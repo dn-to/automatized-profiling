@@ -1,3 +1,6 @@
 04-09-2025 19:32:41 No se ha encontrado el archivo en la ruta especificada
 04-09-2025 19:33:12 No se ha encontrado el archivo en la ruta especificada
 04-09-2025 19:35:30 Se ha encontrado el archivo. Iniciando el flujo de perfilado con python...
+04-09-2025 19:48:39 ERROR: No se ha encontrado el archivo en la ruta especificada.
+04-09-2025 19:49:10 Se ha encontrado el archivo en la ruta especificada.
+04-09-2025 19:49:10 ERROR: El archivo se encuentra vacío. No se puede iniciar el flujo de perfilado.
