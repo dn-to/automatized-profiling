@@ -9,8 +9,23 @@ timestamp = datetime.now().strftime("%d-%m-%Y")
 #read file
 df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/data.txt", sep='\t', index_col=False)
 
-#how many rows the document has
+#how many rows the document has?
 qtty_rows=str(len(df)+1)
+
+#Create the pdf "Reporting_date"
+doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_nombres.pdf", pagesize=letter)
+story = []
+styles = getSampleStyleSheet()
+#Set title
+story.append(Paragraph("<b>Reporte de deltas " + timestamp + "</b>",  styles['Title']))
+story.append(Spacer(3, 12))
+story.append(Paragraph("A continuación se muestra un perfilado que resume la calidad de los <b>" + qtty_rows + "</b> deltas.", styles['Normal']))
+story.append(Spacer(1, 12))
+ 
+#Create graphics and tables for each COLUMN in data.txt file 
+def analizingColumns(df , )
+
+
 
 #group by name
 fq_names= df.groupby("NOMBRE")["NOMBRE"].count().sort_values(ascending=False)
@@ -26,16 +41,7 @@ print(df_names_frequency)
 
 
 #####Crear el docto con esta tabla
-doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_nombres.pdf", pagesize=letter)
-story = []
-styles = getSampleStyleSheet()
 
-# 3. Añadir el texto y la tabla al documento
-# Título
-story.append(Paragraph("<b>Reporte de deltas " + timestamp + "</b>",  styles['Title']))
-story.append(Spacer(3, 12))
-story.append(Paragraph("A continuación se muestra un perfilado que resume la calidad de los <b>" + qtty_rows + "</b> deltas.", styles['Normal']))
-story.append(Spacer(1, 12))
 story.append(Paragraph("<b>Reporte de Nombres</b>", styles['Title']))
 story.append(Spacer(1, 12)) # Espacio en blanco
 
