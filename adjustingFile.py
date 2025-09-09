@@ -23,7 +23,7 @@ story.append(Paragraph("A continuación se muestra un perfilado que resume la ca
 story.append(Spacer(1, 12))
  
 #Create graphics and tables for each COLUMN in data.txt file 
-def analizingColumns(df , )
+#def analizingColumns(df , )
 
 
 

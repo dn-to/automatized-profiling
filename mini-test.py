@@ -8,11 +8,32 @@ def analyzingColumns(df, columna):
     .reset_index(name='FRECUENCIA')
     .rename(columns={'index': columna})
     )
-    plt.bar(float('FRECUENCIA'), labels=columna, autopct="%1.1f%%")
-    plt.title("Frecuencia en gráficos")
-    plt.show()
-    #print(df_columns_frequency)
+    #Write down to file
 
+    doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_nombres.pdf", pagesize=letter)
+    story = []
+    styles = getSampleStyleSheet()
+    #Set title
+    story.append(Paragraph("<b>Reporte de deltas " + timestamp + "</b>",  styles['Title']))
+    story.append(Spacer(3, 12))
+    story.append(Paragraph("A continuación se muestra un perfilado que resume la calidad de los <b>" + qtty_rows + "</b> deltas.", styles['Normal']))
+    story.append(Spacer(1, 12))
+ 
+
+    ten_values_df=df_columns_frequency.head(10)
+    plt.figure(figsize=(10, 6))
+    x_labels = ten_values_df[columna].astype(str)
+    plt.bar(x_labels, ten_values_df['FRECUENCIA'], color='purple')
+    
+    # Paso 3: Añadir detalles al gráfico
+    plt.title(f'Frecuencia de valores en la columna: "{columna}"', fontsize=16)
+    plt.xlabel(columna, fontsize=12)
+    plt.ylabel('Frecuencia', fontsize=12)
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout() # Ajusta el gráfico para evitar que las etiquetas se corten
+    
+    # Paso 4: Mostrar el gráfico
+    plt.show()
 
 
 
