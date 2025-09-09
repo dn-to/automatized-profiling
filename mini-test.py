@@ -1,5 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import datetime
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+
+timestamp = datetime.now().strftime("%d-%m-%Y")
 #Function 
 def analyzingColumns(df, columna):
     #Values and frequency
@@ -9,16 +16,6 @@ def analyzingColumns(df, columna):
     .rename(columns={'index': columna})
     )
     #Write down to file
-
-    doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_nombres.pdf", pagesize=letter)
-    story = []
-    styles = getSampleStyleSheet()
-    #Set title
-    story.append(Paragraph("<b>Reporte de deltas " + timestamp + "</b>",  styles['Title']))
-    story.append(Spacer(3, 12))
-    story.append(Paragraph("A continuación se muestra un perfilado que resume la calidad de los <b>" + qtty_rows + "</b> deltas.", styles['Normal']))
-    story.append(Spacer(1, 12))
- 
 
     ten_values_df=df_columns_frequency.head(10)
     plt.figure(figsize=(10, 6))
@@ -41,6 +38,19 @@ def analyzingColumns(df, columna):
 
 #Open data.txt    
 df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/data.txt", sep='\t', index_col=False)
+
+qtty_rows=str(len(df)+1)
+
+#Create file
+doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_nombres.pdf", pagesize=letter)    
+story = []
+styles = getSampleStyleSheet()
+#Set title
+story.append(Paragraph("<b>Reporte de deltas " + timestamp + "</b>",  styles['Title']))
+story.append(Spacer(3, 12))
+story.append(Paragraph("A continuación se muestra un perfilado que resume la calidad de los <b>" + qtty_rows + "</b> deltas.", styles['Normal']))
+story.append(Spacer(1, 12))
+
 
 #Analyzing-profiling and creating report for each column
 #For simple columns:
