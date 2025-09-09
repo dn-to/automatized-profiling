@@ -49,3 +49,4 @@ Edgar	Vargas	masculino	VAEE900825HDFN15
 Patricia	Rojas	mujer	ROPA850404MDFN16
 Ricardo	Romero	hombre	RIR890919HDFN17
 Diana	Méndez	mujer	MEDI921230MDFN18
+Daniela	Torres	femenino	TOHD000324MMCRRNA6
