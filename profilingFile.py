@@ -7,7 +7,9 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
 timestamp = datetime.now().strftime("%d-%m-%Y")
-
+newTimestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+raw_data_folder = "./Reporting_"+timestamp
+#Function for styles
 def defTableStyle(table):
     table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.darkslategray),
@@ -20,51 +22,62 @@ def defTableStyle(table):
     ]))
     return table
 
-#Function for NAMES and LASTNAMES
-# def analyzingColumns(df, columna):
-#     #Values and frequency
-#     df_columns_frequency = (
-#     df[columna].value_counts(dropna=False)
-#     .reset_index(name='FRECUENCIA')
-#     .rename(columns={'index': columna})
-#     )
-#     #Write down to file
-#     #Set the title
-#     story.append(Paragraph("<b>Reporte de " + columna + "</b>", styles['Title']))
-#     story.append(Spacer(1, 12)) # Espacio en blanco
-#     # Paragraph
-#     story.append(Paragraph("A continuación se muestra una tabla con los valores y su frecuencia encontrados en el documento de deltas 'data.txt'.", styles['Normal']))
-#     story.append(Spacer(1, 12))
-#     # Transform dataframe into a list for table 
-#     # First, titles, then data
-#     data_to_table = [list(df_columns_frequency.columns)] + df_columns_frequency.values.tolist()
-#     table = Table(data_to_table)
-#     # Table style
-#     defTableStyle(table)
-#     story.append(table)
-#     story.append(Spacer(1, 12))
 
-#     #Build graphics
-#     ten_values_df=df_columns_frequency.head(10)
-#     plt.figure(figsize=(10, 6))
-#     x_labels = ten_values_df[columna].astype(str)
-#     plt.bar(x_labels, ten_values_df['FRECUENCIA'], color='purple')
-#     #Graphic style
-#     plt.title(f'Frecuencia de valores en la columna: "{columna}"', fontsize=16)
-#     plt.xlabel(columna, fontsize=12)
-#     plt.ylabel('Frecuencia', fontsize=12)
-#     plt.xticks(rotation=45, ha='right')
-#     plt.tight_layout() # Adjust to see everything in labels
-#     # Write the graphic down
-#     plt.savefig('grafico_' + columna + '.png')
-#     plt.close()
-#     story.append(Paragraph("A continuación se muestra una gráfica con la distribución de los 10 valores más frecuentes.", styles['Normal']))
-#     story.append(Spacer(1, 12))
-#     img = Image("grafico_"+columna+".png", width=400, height=300)
-#     story.append(img)
-#     story.append(Spacer(1, 12))
+#Function for simple columns: NAMES, LASTNAMES , GENRE
+def analyzingColumns(df, columna):
+    #Values and frequency
+    df_columns_frequency = (
+    df[columna].value_counts(dropna=False)
+    .reset_index(name='FRECUENCIA')
+    .rename(columns={'index': columna})
+    )
+    #Write down to file
+    #Set the title
+    story.append(Paragraph("<b>Reporte de " + columna + "</b>", styles['Title']))
+    story.append(Spacer(1, 12)) # Espacio en blanco
+    # Paragraph
+    story.append(Paragraph("A continuación se muestra una tabla con los valores y su frecuencia encontrados en el documento de deltas 'data.txt'.", styles['Normal']))
+    story.append(Spacer(1, 12))
+    # Transform dataframe into a list for table 
+    # First, titles, then data
+    data_to_table = [list(df_columns_frequency.columns)] + df_columns_frequency.values.tolist()
+    table = Table(data_to_table)
+    # Table style
+    defTableStyle(table)
+    story.append(table)
+    story.append(Spacer(1, 12))
 
+    #Build graphics
+    ten_values_df=df_columns_frequency.head(10)
+    plt.figure(figsize=(10, 6))
+    x_labels = ten_values_df[columna].astype(str)
+    if columna!="GENERO":
+        plt.bar(x_labels, ten_values_df['FRECUENCIA'], color='mediumturquoise')
+        #Graphic style
+        plt.title(f'Frecuencia de valores en la columna: "{columna}"', fontsize=16)
+        plt.xlabel(columna, fontsize=12)
+        plt.ylabel('Frecuencia', fontsize=12)
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout() # Adjust to see everything in labels
+    else:
+        plt.pie(df_columns_frequency['FRECUENCIA'], 
+            labels=df_columns_frequency[columna], # Etiquetas para cada porción
+            autopct='%1.1f%%', # Formato para mostrar el porcentaje
+            startangle=90)
+        # Añadir un título y asegurar un aspecto circular
+        plt.title(f'Frecuencia de valores en la columna: "{columna}"', fontsize=16)
+        plt.axis('equal')  # Asegura que el pastel sea un círculo
+        plt.tight_layout()
+    # Write the graphic down
+    plt.savefig(raw_data_folder+'/grafico_' + columna + '.png')
+    plt.close()
+    story.append(Paragraph("A continuación se muestra una gráfica con la distribución de los 10 valores más frecuentes.", styles['Normal']))
+    story.append(Spacer(1, 12))
+    img = Image(raw_data_folder+"/grafico_"+columna+".png", width=400, height=300)
+    story.append(img)
+    story.append(Spacer(1, 12))
 
+#Function for complex columns: CURP, EMAIL
 def reviewColumns(df , columna, regex_patron):
     #Write down to file
     #Set the title
@@ -82,8 +95,6 @@ def reviewColumns(df , columna, regex_patron):
     .rename(columns={'index': columna})
     )
     #TABLE
-    #Transform dataframe into a list for table 
-    # First, titles, then data
     story.append(Paragraph("La siguiente tabla nos muestra la distribución de la longitud de los valores encontrados en la data.", styles['Normal']))
     story.append(Spacer(1, 12))
     data_to_table = [list(df_longitud_frequency.columns)] + df_longitud_frequency.values.tolist()
@@ -101,12 +112,12 @@ def reviewColumns(df , columna, regex_patron):
     plt.title(f'Distribución de longitudes en la columna: "{columna}"', fontsize=16)
     plt.axis('equal')  # Asegura que el pastel sea un círculo
     plt.tight_layout()
-    plt.savefig('graficoLONGITUD_' + columna + '.png')
+    plt.savefig(raw_data_folder+'/graficoLONGITUD_' + columna + '.png')
     plt.close()
     # Write the graphic down
     story.append(Paragraph("A continuación se muestra una gráfica con la distribución de la longitud de los valores en la columna.", styles['Normal']))
     story.append(Spacer(1, 12))
-    img = Image("graficoLONGITUD_"+columna+".png", width=400, height=300)
+    img = Image(raw_data_folder+"/graficoLONGITUD_"+columna+".png", width=400, height=300)
     story.append(img)
     story.append(Spacer(1, 12))
 
@@ -135,11 +146,11 @@ def reviewColumns(df , columna, regex_patron):
     plt.axis('equal')  # Asegura que el pastel sea un círculo        
     plt.tight_layout()
     # Write the graphic down
-    plt.savefig('graficoPATRONES_' + columna + '.png')
+    plt.savefig(raw_data_folder+'/graficoPATRONES_' + columna + '.png')
     plt.close()
     story.append(Paragraph("La siguiente gráfica nos muestra la distribución de la validez (antes mostrada en tabla) del campo " + columna + " para entender de mejor manera la calidad.", styles['Normal']))
     story.append(Spacer(1, 12))
-    img = Image("graficoPATRONES_"+columna+".png", width=400, height=300)
+    img = Image(raw_data_folder+"/graficoPATRONES_"+columna+".png", width=400, height=300)
     story.append(img)
     story.append(Spacer(1, 12))
 
@@ -163,19 +174,18 @@ def reviewColumns(df , columna, regex_patron):
         
 
 
-
 #Open data.txt    
-df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/data.txt", sep='\t', index_col=False)
+df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/"+raw_data_folder+"/data.txt", sep='\t', index_col=False)
 
 qtty_rows=str(len(df)+1)#how many deltas
-
+#regex dictionary
 regex_patterns = {
     'CURP': r'^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|MT|OC|PL|QT|QR|SP|SL|SR|TC|TL|TS|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d]\d)$',
     'EMAIL': r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 }
 
 #Create file
-doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_data.pdf", pagesize=letter)    
+doc = SimpleDocTemplate(raw_data_folder+"/reporte_data.pdf", pagesize=letter)    
 story = []
 styles = getSampleStyleSheet()
 #Set title into the file
@@ -186,14 +196,19 @@ story.append(Spacer(1, 12))
 
 #Analyzing-profiling and creating report for each column
 #For simple columns:
-# sc=["NOMBRE", "APELLIDO", "GENERO"]
-# for columna in sc:
-#     analyzingColumns(df , columna)
-#     print("Creando el reporte de " + columna)
-
-#For structure review columns:
-#src=["CURP"]
+sc=["NOMBRE", "APELLIDO", "GENERO"]
+for columna in sc:
+    analyzingColumns(df , columna)
+    mensaje = f"{newTimestamp} ALERTA: Creando el reporte de:  {columna}.\n"
+    with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+        log.write(mensaje)
+#For complex columns
 for columna, patron in regex_patterns.items():
     reviewColumns(df , columna, patron)
-    print("Creando el reporte de " + columna)
-doc.build(story)
+    mensaje = f"{newTimestamp} ALERTA: Creando el reporte de:  {columna}.\n"
+    with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+        log.write(mensaje)
+doc.build(story)#Create all the document
+mensaje = f"{newTimestamp} El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: {raw_data_folder}"
+with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+    log.write(mensaje+"\n")

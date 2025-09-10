@@ -10,7 +10,7 @@ The project will accomplish this by following a specific flow:
 
 1.  **Bash Scripting**: Create a Bash script (**checkFile.sh**) to verify if the file "data.txt" exists. If it does not, an alert will be logged to **checkFile.log**.
 
-2.  **Python Scripting**: Execute a Python script (**adjustingFile.py**) to manipulate "data.txt" and convert it into a more readable .csv file. The script will log any errors if the process fails.
+2.  **Python Scripting**: Execute a Python script (**profilingFile.py**) to manipulate "data.txt" and convert it into a more readable .csv file. The script will log any errors if the process fails.
 
 3.  **Data Profiling**: Once the new CSV file is ready, the Python script (**profiling.py**)will analyze the data to determine:
     * The total number of rows.
@@ -24,5 +24,5 @@ The project will accomplish this by following a specific flow:
     * Generate a graph to visually represent the findings.
     * Save all the results to a new file.
 
-5.  **Automation**: Automate the entire process using a cron job or a similar scheduler like Launchd.
+5.  **Automation**: Automate the entire process using a cron job or a similar scheduler like Launchd. Create a .tar with the previous profiling folder; after that, remove the directory.
     

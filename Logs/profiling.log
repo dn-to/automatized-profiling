@@ -37,3 +37,90 @@
 09-09-2025 19:50:44 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: ./Reporting_09-09-2025
 09-09-2025 20:01:17 Se ha encontrado el archivo en la ruta especificada.
 09-09-2025 20:01:17 Iniciando el flujo de perfilado con python...
+10-09-2025 13:59:28 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 13:59:28 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 13:59:28 Iniciando el flujo de perfilado con python...
+10-09-2025 13:59:34 ALERTA: Creando el reporte de:  NOMBRE.
+10-09-2025 13:59:34 ALERTA: Creando el reporte de:  APELLIDO.
+10-09-2025 13:59:34 ALERTA: Creando el reporte de:  GENERO.
+10-09-2025 13:59:34 ALERTA: Creando el reporte de:  CURP.
+10-09-2025 13:59:34 ALERTA: Creando el reporte de:  EMAIL.
+10-09-2025 13:59:34 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: ./Reporting_10-09-2025
+10-09-2025 14:08:25 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 14:08:25 Iniciando el flujo de perfilado con python...
+10-09-2025 14:08:26 ALERTA: Creando el reporte de:  NOMBRE.
+10-09-2025 14:08:26 ALERTA: Creando el reporte de:  APELLIDO.
+10-09-2025 14:08:26 ALERTA: Creando el reporte de:  GENERO.
+10-09-2025 14:08:26 ALERTA: Creando el reporte de:  CURP.
+10-09-2025 14:08:26 ALERTA: Creando el reporte de:  EMAIL.
+10-09-2025 14:08:26 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: ./Reporting_10-09-2025
+tar: Failed to open 'Reporting_09-09-2025.tar'
+rm: Reporting_09-09-2025: No such file or directory
+/Users/danito/ProyectoPersonal/Proyectos/Profiling/checkFile.sh: line 11: ./Logs/profiling.log: No such file or directory
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 15:10:02 Se ha encontrado el archivo en la ruta especificada.
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 15:10:02 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+Traceback (most recent call last):
+  File "/Users/danito/ProyectoPersonal/Proyectos/Profiling/profilingFile.py", line 178, in <module>
+    df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/"+raw_data_folder+"/data.txt", sep='\t', index_col=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/danito/ProyectoPersonal/Proyectos/Profiling/./Reporting_10-09-2025/data.txt'
+10-09-2025 16:31:43 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 16:31:43 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 16:31:43 Iniciando el flujo de perfilado con python...
+tar: Failed to open 'Reporting_09-09-2025.tar'
+mv: rename Reporting_09-09-2025.tar to /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reportings/Reporting_09-09-2025.tar: No such file or directory
+rm: Reporting_09-09-2025: No such file or directory
+/Users/danito/ProyectoPersonal/Proyectos/Profiling/checkFile.sh: line 13: ./Logs/profiling.log: No such file or directory
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 16:40:04 Se ha encontrado el archivo en la ruta especificada.
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 16:40:04 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 16:48:04 Se ha encontrado el archivo en la ruta especificada.
+tee: ./Logs/checkFile.log: No such file or directory
+tee: ./Logs/profiling.log: No such file or directory
+10-09-2025 16:48:04 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+tee: Logs/checkFile.log: No such file or directory
+tee: Logs/profiling.log: No such file or directory
+10-09-2025 16:53:05 Se ha encontrado el archivo en la ruta especificada.
+tee: Logs/checkFile.log: No such file or directory
+tee: Logs/profiling.log: No such file or directory
+10-09-2025 16:53:05 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+tee: Logs/checkFile.log: No such file or directory
+tee: Logs/profiling.log: No such file or directory
+10-09-2025 16:59:00 Se ha encontrado el archivo en la ruta especificada.
+tee: Logs/checkFile.log: No such file or directory
+tee: Logs/profiling.log: No such file or directory
+10-09-2025 16:59:00 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+10-09-2025 17:01:03 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:01:03 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:01:03 Iniciando el flujo de perfilado con python...
+10-09-2025 17:01:03 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
