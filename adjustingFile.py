@@ -7,7 +7,9 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
 timestamp = datetime.now().strftime("%d-%m-%Y")
-
+newTimestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+raw_data_folder = "./Reporting_"+timestamp
+#Function for styles
 def defTableStyle(table):
     table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.darkslategray),
@@ -21,7 +23,7 @@ def defTableStyle(table):
     return table
 
 
-#Function for NAMES and LASTNAMES
+#Function for simple columns: NAMES, LASTNAMES , GENRE
 def analyzingColumns(df, columna):
     #Values and frequency
     df_columns_frequency = (
@@ -67,15 +69,15 @@ def analyzingColumns(df, columna):
         plt.axis('equal')  # Asegura que el pastel sea un círculo
         plt.tight_layout()
     # Write the graphic down
-    plt.savefig('grafico_' + columna + '.png')
+    plt.savefig(raw_data_folder+'/grafico_' + columna + '.png')
     plt.close()
     story.append(Paragraph("A continuación se muestra una gráfica con la distribución de los 10 valores más frecuentes.", styles['Normal']))
     story.append(Spacer(1, 12))
-    img = Image("grafico_"+columna+".png", width=400, height=300)
+    img = Image(raw_data_folder+"/grafico_"+columna+".png", width=400, height=300)
     story.append(img)
     story.append(Spacer(1, 12))
 
-
+#Function for complex columns: CURP, EMAIL
 def reviewColumns(df , columna, regex_patron):
     #Write down to file
     #Set the title
@@ -93,8 +95,6 @@ def reviewColumns(df , columna, regex_patron):
     .rename(columns={'index': columna})
     )
     #TABLE
-    #Transform dataframe into a list for table 
-    # First, titles, then data
     story.append(Paragraph("La siguiente tabla nos muestra la distribución de la longitud de los valores encontrados en la data.", styles['Normal']))
     story.append(Spacer(1, 12))
     data_to_table = [list(df_longitud_frequency.columns)] + df_longitud_frequency.values.tolist()
@@ -112,12 +112,12 @@ def reviewColumns(df , columna, regex_patron):
     plt.title(f'Distribución de longitudes en la columna: "{columna}"', fontsize=16)
     plt.axis('equal')  # Asegura que el pastel sea un círculo
     plt.tight_layout()
-    plt.savefig('graficoLONGITUD_' + columna + '.png')
+    plt.savefig(raw_data_folder+'/graficoLONGITUD_' + columna + '.png')
     plt.close()
     # Write the graphic down
     story.append(Paragraph("A continuación se muestra una gráfica con la distribución de la longitud de los valores en la columna.", styles['Normal']))
     story.append(Spacer(1, 12))
-    img = Image("graficoLONGITUD_"+columna+".png", width=400, height=300)
+    img = Image(raw_data_folder+"/graficoLONGITUD_"+columna+".png", width=400, height=300)
     story.append(img)
     story.append(Spacer(1, 12))
 
@@ -146,11 +146,11 @@ def reviewColumns(df , columna, regex_patron):
     plt.axis('equal')  # Asegura que el pastel sea un círculo        
     plt.tight_layout()
     # Write the graphic down
-    plt.savefig('graficoPATRONES_' + columna + '.png')
+    plt.savefig(raw_data_folder+'/graficoPATRONES_' + columna + '.png')
     plt.close()
     story.append(Paragraph("La siguiente gráfica nos muestra la distribución de la validez (antes mostrada en tabla) del campo " + columna + " para entender de mejor manera la calidad.", styles['Normal']))
     story.append(Spacer(1, 12))
-    img = Image("graficoPATRONES_"+columna+".png", width=400, height=300)
+    img = Image(raw_data_folder+"/graficoPATRONES_"+columna+".png", width=400, height=300)
     story.append(img)
     story.append(Spacer(1, 12))
 
@@ -185,7 +185,7 @@ regex_patterns = {
 }
 
 #Create file
-doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_data.pdf", pagesize=letter)    
+doc = SimpleDocTemplate(raw_data_folder+"/reporte_data.pdf", pagesize=letter)    
 story = []
 styles = getSampleStyleSheet()
 #Set title into the file
@@ -199,8 +199,16 @@ story.append(Spacer(1, 12))
 sc=["NOMBRE", "APELLIDO", "GENERO"]
 for columna in sc:
     analyzingColumns(df , columna)
-    print("Creando el reporte de " + columna)
+    mensaje = f"{newTimestamp} ALERTA: Creando el reporte de:  {columna}.\n"
+    with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+        log.write(mensaje)
+#For complex columns
 for columna, patron in regex_patterns.items():
     reviewColumns(df , columna, patron)
-    print("Creando el reporte de " + columna)
-doc.build(story)
+    mensaje = f"{newTimestamp} ALERTA: Creando el reporte de:  {columna}.\n"
+    with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+        log.write(mensaje)
+doc.build(story)#Create all the document
+mensaje = f"{newTimestamp} El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: {raw_data_folder}"
+with open("/Users/danito/ProyectoPersonal/Proyectos/Profiling/Logs/profiling.log", "a") as log:
+    log.write(mensaje+"\n")
