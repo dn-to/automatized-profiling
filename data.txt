@@ -1,52 +1,52 @@
-NOMBRE	APELLIDO	GENERO	CURP
-Juan	Pérez	masculino	PEJAPPP0001
-María	García	f	GAMAML123456789
-Luis	Hernández	m	HEHL98765432101234
-Ana	López	femenino	LOAALOP950101HDFR05
-Carlos	Ramírez	hombre	RACA990203HDFR09
-Sofía	Torres	f	TOSO960505MDFR04
-	Flores	masculino	12345678912345678
-Laura	Mendoza	femenino	MELAU123456789
-Miguel	Díaz	m	DIMA850909HDFR02
-Juan	Pérez	masculino	PEJAPPP0001
-Juan	Pérez	hombre	PECH940520HDFN01
-María	García	mujer	GAMM850115MDFR01
-Luis	Hernández	hombre	HELU920310HDFR02
-Ana	López	mujer	LOAA881125MDFR03
-Carlos	Ramírez	hombre	RACA900701HDFR04
-Sofía	Torres	mujer	TOSO910905MDFR05
-	Flores	hombre	FLJO870228HDFR06
-Laura	Mendoza	mujer	MELU950418MDFR07
-Miguel	Díaz	hombre	DIMA930822HDFR08
-Daniela	Ruiz	mujer	RUDN961203MDFR09
-Alejandro	Vázquez	hombre	VAAA980614HDFR10
-Gabriela	Castro	mujer	CAGB971020MDFR11
-Ricardo	Morales	hombre	MORI990130HDFR12
-Natalia	Jiménez	mujer	JINA000305MDFR13
-Fernando	Rivera	hombre	RIFE940520HDFR14
-Andrea	Soto	mujer	SOAA950711MDFR15
-Javier	Cruz	hombre	CRJA930928HDFR16
-Valentina	Gil	mujer	GIVA961117MDFR17
-Juan	Pérez	hombre	PECH940520HDFN01
-Miguel	Díaz	hombre	DIMA930822HDFR08
-Juan	Mendoza	masculino	MEMJ950820HDFN01
-Sofía	Castro	f	CASO010215MDFN02
-Mario	Solís	hombre	SOMM921123HDFN03
-Fernanda	Valdés	mujer	VAFE980404MDFN04
-Omar	Ríos	m	RIRO901010HDFN05
-Paulina	Guerrero	femenino	GUPP970707MDFN06
-Esteban	Castillo	hombre	CAEE910530HDFN07
-Valeria	Ortega	mujer	ORVA991212MDFN08
-Gustavo	Ruiz	masculino	RUGU940303HDFN09
-Daniela	Soto	f	SODN960625MDFN10
-David	Morales	hombre	MODA880901HDFN11
-Karla	Ponce	mujer	POKAKF010101
-Alejandro	Jiménez	m	JIAJ971120HDFN12
-Brenda	Torres	femenino	TORB930218MDFN13
-Héctor	Salas	hombre	SAHL123456789
-Carolina	Vidal	f	VICARL990505MDFN14
-Edgar	Vargas	masculino	VAEE900825HDFN15
-Patricia	Rojas	mujer	ROPA850404MDFN16
-Ricardo	Romero	hombre	RIR890919HDFN17
-Diana	Méndez	mujer	MEDI921230MDFN18
-Daniela	Torres	femenino	TOHD000324MMCRRNA6
+NOMBRE	APELLIDO	GENERO	CURP	EMAIL
+Juan	Pérez	masculino	PEJAPPP0001	test_email@email.com
+María	García	f	GAMAML123456789	test_email@email.com
+Luis	Hernández	m	HEHL98765432101234	test_email@email.com
+Ana	López	femenino	LOAALOP950101HDFR05	test_email@email.com
+Carlos	Ramírez	hombre	RACA990203HDFR09	test_email@email.com
+Sofía	Torres	f	TOSO960505MDFR04	test_email@email.com
+	Flores	masculino	12345678912345678	test_email@email.com
+Laura	Mendoza	femenino	MELAU123456789	test_email@email.com
+Miguel	Díaz	m	DIMA850909HDFR02	test_email@email.com
+Juan	Pérez	masculino	PEJAPPP0001	test_email@email.com
+Juan	Pérez	hombre	PECH940520HDFN01	test_email@email.com
+María	García	mujer	GAMM850115MDFR01	test_email@email.com
+Luis	Hernández	hombre	HELU920310HDFR02	test_email@email.com
+Ana	López	mujer	LOAA881125MDFR03	test_email@email.com
+Carlos	Ramírez	hombre	RACA900701HDFR04	test_email@email.com
+Sofía	Torres	mujer	TOSO910905MDFR05	test_email@email.com
+	Flores	hombre	FLJO870228HDFR06	test_email@email.com
+Laura	Mendoza	mujer	MELU950418MDFR07	test_email@email.com
+Miguel	Díaz	hombre	DIMA930822HDFR08	test_email@email.com
+Daniela	Ruiz	mujer	RUDN961203MDFR09	test_email@email.com
+Alejandro	Vázquez	hombre	VAAA980614HDFR10	test_email@email.com
+Gabriela	Castro	mujer	CAGB971020MDFR11	test_email@email.com
+Ricardo	Morales	hombre	MORI990130HDFR12	test_email@email.com
+Natalia	Jiménez	mujer	JINA000305MDFR13	test_email@email.com
+Fernando	Rivera	hombre	RIFE940520HDFR14	test_email@email.com
+Andrea	Soto	mujer	SOAA950711MDFR15	test_email@email.com
+Javier	Cruz	hombre	CRJA930928HDFR16	test_email@email.com
+Valentina	Gil	mujer	GIVA961117MDFR17	test_email@email.com
+Juan	Pérez	hombre	PECH940520HDFN01	test_email@email.com
+Miguel	Díaz	hombre	DIMA930822HDFR08	test_email@email.com
+Juan	Mendoza	masculino	MEMJ950820HDFN01	test_email@email.com
+Sofía	Castro	f	CASO010215MDFN02	test_email@email.com
+Mario	Solís	hombre	SOMM921123HDFN03	test_email@email.com
+Fernanda	Valdés	mujer	VAFE980404MDFN04	test_email@email.com
+Omar	Ríos	m	RIRO901010HDFN05	test_email@email.com
+Paulina	Guerrero	femenino	GUPP970707MDFN06	test_email@email.com
+Esteban	Castillo	hombre	CAEE910530HDFN07	test_email@email.com
+Valeria	Ortega	mujer	ORVA991212MDFN08	test_email@email.com
+Gustavo	Ruiz	masculino	RUGU940303HDFN09	test_email@email.com
+Daniela	Soto	f	SODN960625MDFN10	test_email@email.com
+David	Morales	hombre	MODA880901HDFN11	test_email@email.com
+Karla	Ponce	mujer	POKAKF010101	test_email@email.com
+Alejandro	Jiménez	m	JIAJ971120HDFN12	test_email@email.com
+Brenda	Torres	femenino	TORB930218MDFN13	test_email@email.com
+Héctor	Salas	hombre	SAHL123456789	test_email@email.com
+Carolina	Vidal	f	VICARL990505MDFN14	test_email@email.com
+Edgar	Vargas	masculino	VAEE900825HDFN15	test_email@email.com
+Patricia	Rojas	mujer	ROPA850404MDFN16	test_email@email.com
+Ricardo	Romero	hombre	RIR890919HDFN17	test_email@email.com
+Diana	Méndez	mujer	MEDI921230MDFN18	test_email@email.com
+Daniela	Torres	femenino	TOHD000324MMCRRNA6	test_email@email.com

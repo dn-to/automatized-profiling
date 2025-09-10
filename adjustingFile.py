@@ -8,6 +8,19 @@ from reportlab.lib import colors
 
 timestamp = datetime.now().strftime("%d-%m-%Y")
 
+def defTableStyle(table):
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.darkslategray),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.azure),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.azure),
+        ('GRID', (0, 0), (-1, -1), 1, colors.darkslategray)
+    ]))
+    return table
+
+
 #Function for NAMES and LASTNAMES
 def analyzingColumns(df, columna):
     #Values and frequency
@@ -28,15 +41,7 @@ def analyzingColumns(df, columna):
     data_to_table = [list(df_columns_frequency.columns)] + df_columns_frequency.values.tolist()
     table = Table(data_to_table)
     # Table style
-    table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.darkslategray),
-        ('TEXTCOLOR', (0, 0), (-1, 0), colors.azure),
-        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.azure),
-        ('GRID', (0, 0), (-1, -1), 1, colors.darkslategray)
-    ]))
+    defTableStyle(table)
     story.append(table)
     story.append(Spacer(1, 12))
 
@@ -71,10 +76,113 @@ def analyzingColumns(df, columna):
     story.append(Spacer(1, 12))
 
 
+def reviewColumns(df , columna, regex_patron):
+    #Write down to file
+    #Set the title
+    story.append(Paragraph("<b>Reporte de " + columna + "</b>", styles['Title']))
+    story.append(Spacer(1, 12)) # Espacio en blanco
+    # Paragraph
+    story.append(Paragraph("A continuación se muestra un resumen de la columna, con material de apoyo visual.", styles['Normal']))
+    story.append(Spacer(1, 12))
+
+    #How is distributed the lenght 
+    df['LONGITUD'] = df [columna].str.len()
+    df_longitud_frequency = (
+    df['LONGITUD'].value_counts(dropna=False)
+    .reset_index(name='FRECUENCIA')
+    .rename(columns={'index': columna})
+    )
+    #TABLE
+    #Transform dataframe into a list for table 
+    # First, titles, then data
+    story.append(Paragraph("La siguiente tabla nos muestra la distribución de la longitud de los valores encontrados en la data.", styles['Normal']))
+    story.append(Spacer(1, 12))
+    data_to_table = [list(df_longitud_frequency.columns)] + df_longitud_frequency.values.tolist()
+    table = Table(data_to_table)
+    defTableStyle(table)
+    story.append(table)
+    story.append(Spacer(1, 12))
+
+    #GRAPHIC
+    plt.pie(df_longitud_frequency['FRECUENCIA'], 
+            labels=df_longitud_frequency['LONGITUD'], # Etiquetas para cada porción
+            autopct='%1.1f%%', # Formato para mostrar el porcentaje
+            startangle=90)
+        # Añadir un título y asegurar un aspecto circular
+    plt.title(f'Distribución de longitudes en la columna: "{columna}"', fontsize=16)
+    plt.axis('equal')  # Asegura que el pastel sea un círculo
+    plt.tight_layout()
+    plt.savefig('graficoLONGITUD_' + columna + '.png')
+    plt.close()
+    # Write the graphic down
+    story.append(Paragraph("A continuación se muestra una gráfica con la distribución de la longitud de los valores en la columna.", styles['Normal']))
+    story.append(Spacer(1, 12))
+    img = Image("graficoLONGITUD_"+columna+".png", width=400, height=300)
+    story.append(img)
+    story.append(Spacer(1, 12))
+
+    #It's a valid column?
+    story.append(Paragraph("La siguiente tabla muestra un resumen de la cantidad de deltas que cumplen o no con la estructura de un(a): " + columna, styles['Normal']))
+    story.append(Spacer(1, 12))
+    df['cumple_patron'] = df[columna].str.match(regex_patron) 
+    df_patron_frequency = (
+    df['cumple_patron'].value_counts(dropna=False)
+    .reset_index(name='FRECUENCIA')
+    .rename(columns={'index': columna})
+    )
+    #TABLE
+    data_to_table = [list(df_patron_frequency.columns)] + df_patron_frequency.values.tolist()
+    table = Table(data_to_table)
+    defTableStyle(table)
+    story.append(table)
+    story.append(Spacer(1, 12))
+    #GRAPHIC
+    plt.pie(df_patron_frequency['FRECUENCIA'], 
+            labels=df_patron_frequency['cumple_patron'], # Etiquetas para cada porción
+            autopct='%1.1f%%', # Formato para mostrar el porcentaje
+            startangle=90)
+        # Añadir un título y asegurar un aspecto circular
+    plt.title(f'Validez del (a): "{columna}"', fontsize=16)
+    plt.axis('equal')  # Asegura que el pastel sea un círculo        
+    plt.tight_layout()
+    # Write the graphic down
+    plt.savefig('graficoPATRONES_' + columna + '.png')
+    plt.close()
+    story.append(Paragraph("La siguiente gráfica nos muestra la distribución de la validez (antes mostrada en tabla) del campo " + columna + " para entender de mejor manera la calidad.", styles['Normal']))
+    story.append(Spacer(1, 12))
+    img = Image("graficoPATRONES_"+columna+".png", width=400, height=300)
+    story.append(img)
+    story.append(Spacer(1, 12))
+
+    #Are there any duplicated?
+    mascara_duplicados = df.duplicated(subset=[columna], keep=False).sum()
+    if mascara_duplicados!=0:
+        story.append(Paragraph("Se han encontrado un total de <b>" + str(mascara_duplicados) + "</b> registros duplicados, a raíz de la columna: " + columna + ". A continuación se presenta una tabla con los detalles de estas duplicaciones.", styles['Normal']))
+        story.append(Spacer(1, 12))
+        smt= df.duplicated(subset=[columna], keep=False)
+        registros_duplicados = df[smt].sort_values(columna, ascending=False)
+        #TABLE
+        data_to_table = [list(registros_duplicados.columns)] + registros_duplicados.values.tolist()
+        table = Table(data_to_table)
+        defTableStyle(table)
+
+        story.append(table)
+        story.append(Spacer(1, 12))
+        
+    else:
+        print("No duplicated")
+        
+
+
 #Open data.txt    
 df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/data.txt", sep='\t', index_col=False)
 
 qtty_rows=str(len(df)+1)#how many deltas
+#regex dictionary
+regex_patterns = {
+    'CURP': r'^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|MT|OC|PL|QT|QR|SP|SL|SR|TC|TL|TS|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d]\d)$',
+    'EMAIL': r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+}
 
 #Create file
 doc = SimpleDocTemplate("./Reporting_"+timestamp+"/reporte_data.pdf", pagesize=letter)    
@@ -91,5 +199,8 @@ story.append(Spacer(1, 12))
 sc=["NOMBRE", "APELLIDO", "GENERO"]
 for columna in sc:
     analyzingColumns(df , columna)
+    print("Creando el reporte de " + columna)
+for columna, patron in regex_patterns.items():
+    reviewColumns(df , columna, patron)
     print("Creando el reporte de " + columna)
 doc.build(story)
