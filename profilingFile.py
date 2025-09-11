@@ -8,7 +8,8 @@ from reportlab.lib import colors
 
 timestamp = datetime.now().strftime("%d-%m-%Y")
 newTimestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-raw_data_folder = "/Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_"+timestamp
+raiz="/Users/danito"
+raw_data_folder = raiz+"/ProyectoPersonal/Proyectos/Profiling/Reporting_"+timestamp
 #Function for styles
 def defTableStyle(table):
     table.setStyle(TableStyle([

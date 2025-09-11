@@ -225,3 +225,16 @@ Se creó la carpeta comprimida
 10-09-2025 18:04:07 ALERTA: Creando el reporte de:  CURP.
 10-09-2025 18:04:07 ALERTA: Creando el reporte de:  EMAIL.
 10-09-2025 18:04:07 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_10-09-2025
+tar: Removing leading '/' from member names
+10-09-2025 18:22:00 Se creó la carpeta comprimida.
+10-09-2025 18:22:00 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 18:22:00 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 18:22:00 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 18:22:00 Iniciando el flujo de perfilado con python...
+10-09-2025 18:22:00 Iniciando el flujo de perfilado con python...
+10-09-2025 18:22:01 ALERTA: Creando el reporte de:  NOMBRE.
+10-09-2025 18:22:01 ALERTA: Creando el reporte de:  APELLIDO.
+10-09-2025 18:22:01 ALERTA: Creando el reporte de:  GENERO.
+10-09-2025 18:22:01 ALERTA: Creando el reporte de:  CURP.
+10-09-2025 18:22:01 ALERTA: Creando el reporte de:  EMAIL.
+10-09-2025 18:22:01 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_10-09-2025
