@@ -8,7 +8,7 @@ from reportlab.lib import colors
 
 timestamp = datetime.now().strftime("%d-%m-%Y")
 newTimestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-raw_data_folder = "./Reporting_"+timestamp
+raw_data_folder = "/Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_"+timestamp
 #Function for styles
 def defTableStyle(table):
     table.setStyle(TableStyle([
@@ -175,7 +175,7 @@ def reviewColumns(df , columna, regex_patron):
 
 
 #Open data.txt    
-df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/"+raw_data_folder+"/data.txt", sep='\t', index_col=False)
+df = pd.read_csv(raw_data_folder+"/data.txt", sep='\t', index_col=False)
 
 qtty_rows=str(len(df)+1)#how many deltas
 #regex dictionary

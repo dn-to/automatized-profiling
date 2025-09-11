@@ -124,3 +124,104 @@ mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
 10-09-2025 17:01:03 Iniciando el flujo de perfilado con python...
 mkdir: Reporting_10-09-2025: Read-only file system
 mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+10-09-2025 17:07:00 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:07:00 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:07:00 Iniciando el flujo de perfilado con python...
+10-09-2025 17:07:00 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+tar: Failed to open 'Reporting_09-09-2025.tar'
+mv: rename Reporting_09-09-2025.tar to /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reportings/Reporting_09-09-2025.tar: No such file or directory
+rm: Reporting_09-09-2025: No such file or directory
+10-09-2025 17:13:04 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Failed to open 'Reporting_09-09-2025.tar'
+10-09-2025 17:17:05 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Failed to open 'Reporting_09-09-2025.tar'
+10-09-2025 17:21:05 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+mv: rename Reporting_09-09-2025.tar to /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reportings/Reporting_09-09-2025.tar: No such file or directory
+rm: Reporting_09-09-2025: No such file or directory
+10-09-2025 17:31:02 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+mv: rename Reporting_09-09-2025.tar to /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reportings/Reporting_09-09-2025.tar: No such file or directory
+rm: Reporting_09-09-2025: No such file or directory
+10-09-2025 17:32:05 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+mv: rename /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_09-09-2025.tar to /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reportings//Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_09-09-2025.tar: No such file or directory
+10-09-2025 17:41:04 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+10-09-2025 17:43:02 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 17:50:04 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:50:04 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:50:04 Iniciando el flujo de perfilado con python...
+10-09-2025 17:50:04 Iniciando el flujo de perfilado con python...
+mkdir: Reporting_10-09-2025: Read-only file system
+mv: fastcopy: open() failed (to): Reporting_10-09-2025: Read-only file system
+Traceback (most recent call last):
+  File "/Users/danito/ProyectoPersonal/Proyectos/Profiling/profilingFile.py", line 178, in <module>
+    df = pd.read_csv("/Users/danito/ProyectoPersonal/Proyectos/Profiling/"+raw_data_folder+"/data.txt", sep='\t', index_col=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/danito/ProyectoPersonal/Proyectos/Profiling/./Reporting_10-09-2025/data.txt'
+10-09-2025 17:55:04 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:55:04 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:55:04 Iniciando el flujo de perfilado con python...
+10-09-2025 17:55:04 Iniciando el flujo de perfilado con python...
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+10-09-2025 17:58:05 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 17:58:05 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:58:05 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 17:58:05 Iniciando el flujo de perfilado con python...
+10-09-2025 17:58:05 Iniciando el flujo de perfilado con python...
+Traceback (most recent call last):
+  File "/Users/danito/ProyectoPersonal/Proyectos/Profiling/profilingFile.py", line 201, in <module>
+    analyzingColumns(df , columna)
+  File "/Users/danito/ProyectoPersonal/Proyectos/Profiling/profilingFile.py", line 72, in analyzingColumns
+    plt.savefig(raw_data_folder+'/grafico_' + columna + '.png')
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1243, in savefig
+    res = fig.savefig(*args, **kwargs)  # type: ignore[func-returns-value]
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/figure.py", line 3490, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2184, in print_figure
+    result = print_method(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2040, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 481, in print_png
+    self._print_pil(filename_or_obj, "png", pil_kwargs, metadata)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 430, in _print_pil
+    mpl.image.imsave(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/matplotlib/image.py", line 1634, in imsave
+    image.save(fname, **pil_kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/PIL/Image.py", line 2591, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: './Reporting_10-09-2025/grafico_NOMBRE.png'
+10-09-2025 18:02:04 ERROR: No se ha encontrado el archivo en la ruta especificada.
+10-09-2025 18:02:04 ERROR: No se ha encontrado el archivo en la ruta especificada.
+tar: Removing leading '/' from member names
+Se creó la carpeta comprimida
+10-09-2025 18:04:05 La carpeta Reporting_09-09-2025 ha sido comprimida y eliminada.
+10-09-2025 18:04:05 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 18:04:05 Se ha encontrado el archivo en la ruta especificada.
+10-09-2025 18:04:05 Iniciando el flujo de perfilado con python...
+10-09-2025 18:04:05 Iniciando el flujo de perfilado con python...
+10-09-2025 18:04:07 ALERTA: Creando el reporte de:  NOMBRE.
+10-09-2025 18:04:07 ALERTA: Creando el reporte de:  APELLIDO.
+10-09-2025 18:04:07 ALERTA: Creando el reporte de:  GENERO.
+10-09-2025 18:04:07 ALERTA: Creando el reporte de:  CURP.
+10-09-2025 18:04:07 ALERTA: Creando el reporte de:  EMAIL.
+10-09-2025 18:04:07 El reporte se ha creado satisfactoriamente. Se encuentra en la siguiente ruta: /Users/danito/ProyectoPersonal/Proyectos/Profiling/Reporting_10-09-2025
